@@ -14,7 +14,7 @@ def hello():
 @app.route('/nic/flask/fib', methods=['GET'])
 def fib():
     args = request.args
-    n = int(args.get('n'))
+    n = args.get('n', 0, int)
     if n <= 0:
         return "Please enter a positive integer!"
     else:
