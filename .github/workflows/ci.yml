@@ -24,6 +24,7 @@ jobs:
              ./deploy-flask.sh
              if [ $? != 0 ]; then
                echo "deploy-flask.sh failed, check the server logs!"
+               exit 1
              fi
              echo 'Deployment successful to digital ocean'
 
