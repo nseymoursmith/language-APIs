@@ -12,6 +12,8 @@ if ! [ -d "$HOME/language-APIs/nic/flask/" ]; then
 fi
 
 cd $HOME/language-APIs/nic/flask/
+pwd
+ls -la
 docker compose up --build -d
 if [ $? != 0 ]; then
     echo "docker compose failed, check the server logs!"
