@@ -16,11 +16,14 @@ jobs:
            key: ${{secrets.SSH_KEY}} # Private or public key of the server
            username: ${{ secrets.SSH_USERNAME }} # User of the server you want to ssh into
            script: |
-             if [ -d "$HOME/language-APIs/" ]; then
-               cd $HOME/language-APIs/
-               ./deploy-flask.sh
-               echo 'Deployment successful to digital ocean'
-             else
+             if ! [ -d "$HOME/language-APIs/" ]; then
                echo 'repo does not exist!'
                exit 1
              fi
+             cd $HOME/language-APIs/
+             ./deploy-flask.sh
+             if [ $? != 0 ]; then
+               echo "deploy-flask.sh failed, check the server logs!"
+             fi
+             echo 'Deployment successful to digital ocean'
+
